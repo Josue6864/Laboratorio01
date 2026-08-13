@@ -1,9 +1,9 @@
 package modelo;
 
-/**
- * Representa a un entrenador: su nombre, sus 4 Digimon, cuales ya uso,
- * cuantas rondas ha ganado, y el bono pendiente que le dejo su
- * digievolucion para la ronda siguiente (ataque y/o defensa extra).
+/*
+  Representa a un entrenador: su nombre, sus 4 Digimon, cuales ya uso,
+  cuantas rondas ha ganado, y el bono pendiente que le dejo su
+  digievolucion para la ronda siguiente (ataque y/o defensa extra).
  */
 public class Entrenador {
 
@@ -63,17 +63,17 @@ public class Entrenador {
         rondasGanadas++;
     }
 
-    /**
-     * Suma un valor al bono de ataque pendiente (puede ser negativo,
-     * por ejemplo cuando el rival te aplica dano directo).
+    /*
+      Suma un valor al bono de ataque pendiente (puede ser negativo,
+      por ejemplo cuando el rival te aplica dano directo).
      */
     public void agregarBonoAtaque(int valor) {
         bonoAtaquePendiente += valor;
     }
 
-    /**
-     * Devuelve el bono de ataque acumulado y lo reinicia a 0,
-     * ya que solo aplica para el Digimon que juega esta ronda.
+    /*
+      Devuelve el bono de ataque acumulado y lo reinicia a 0,
+      ya que solo aplica para el Digimon que juega esta ronda.
      */
     public int consumirBonoAtaque() {
         int valor = bonoAtaquePendiente;
