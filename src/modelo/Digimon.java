@@ -2,8 +2,7 @@ package modelo;
  
 /*
   Representa los datos fijos de un Digimon: nombre, tipo, ataque, defensa
-  base y su digievolucion. No guarda estado de batalla (bonos, rondas
-  usadas, etc.) — eso lo administra la clase Entrenador, para poder
+  base y su digievolucion. No guardan los estados de batalla — eso se administra en la clase Entrenador, para poder
   reutilizar el mismo Digimon entre distintos entrenadores sin que
   un bono de uno se filtre al otro.
  */

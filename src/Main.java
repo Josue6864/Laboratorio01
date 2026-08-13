@@ -59,17 +59,35 @@ public class Main {
             System.out.println("4. Tentomon");
 
             System.out.println();
-            System.out.print(entrenador1.getNombre() + ", seleccione Digimon: ");
-            int opcion1 = scanner.nextInt();
+            int opcion1 = leerEnteroEnRango(
+                    scanner,
+                    entrenador1.getNombre() + ", seleccione Digimon: ",
+                    1,
+                    4);
 
-            System.out.print(entrenador1.getNombre() + ", usar habilidad especial? (1=Si, 0=No): ");
-            boolean usarHabilidad1 = scanner.nextInt() == 1;
+            int opcionHabilidad1 = leerEnteroEnRango(
+                    scanner,
+                    entrenador1.getNombre()
+                            + ", usar habilidad especial? (1=Si, 0=No): ",
+                    0,
+                    1);
 
-            System.out.print(entrenador2.getNombre() + ", seleccione Digimon: ");
-            int opcion2 = scanner.nextInt();
+            boolean usarHabilidad1 = opcionHabilidad1 == 1;
 
-            System.out.print(entrenador2.getNombre() + ", usar habilidad especial? (1=Si, 0=No): ");
-            boolean usarHabilidad2 = scanner.nextInt() == 1;
+            int opcion2 = leerEnteroEnRango(
+                    scanner,
+                    entrenador2.getNombre() + ", seleccione Digimon: ",
+                    1,
+                    4);
+
+            int opcionHabilidad2 = leerEnteroEnRango(
+                    scanner,
+                    entrenador2.getNombre()
+                            + ", usar habilidad especial? (1=Si, 0=No): ",
+                    0,
+                    1);
+
+            boolean usarHabilidad2 = opcionHabilidad2 == 1;
 
             controlador.jugarRonda(
                     entrenador1, opcion1 - 1, usarHabilidad1,
@@ -117,5 +135,42 @@ public class Main {
         }
 
         scanner.close();
+    }
+
+    public static int leerEnteroEnRango(
+            Scanner scanner,
+            String mensaje,
+            int minimo,
+            int maximo) {
+
+        int numero = 0;
+        boolean valido = false;
+
+        while (!valido) {
+
+            System.out.print(mensaje);
+
+            if (scanner.hasNextInt()) {
+
+                numero = scanner.nextInt();
+
+                if (numero >= minimo && numero <= maximo) {
+                    valido = true;
+                } else {
+                    System.out.println(
+                            "Ingrese un numero entre "
+                                    + minimo + " y " + maximo + ".");
+                }
+
+            } else {
+
+                System.out.println(
+                        "Entrada invalida. Debe ingresar un numero.");
+
+                scanner.next();
+            }
+        }
+
+        return numero;
     }
 }

@@ -53,22 +53,25 @@ public class ControladorBatalla {
     }
 
     /**
-      Resuelve una ronda completa entre los Digimon elegidos por cada
-      entrenador. Actualiza rondasGanadas del entrenador que gane y
-      tambien deja el resultado disponible en los getters de ultimo.
+     * Resuelve una ronda completa entre los Digimon elegidos por cada
+     * entrenador. Actualiza rondasGanadas del entrenador que gane y
+     * tambien deja el resultado disponible en los getters de ultimo.
      */
     public void jugarRonda(Entrenador entrenador1, int posicion1, boolean usarHabilidad1,
-                            Entrenador entrenador2, int posicion2, boolean usarHabilidad2) {
+            Entrenador entrenador2, int posicion2, boolean usarHabilidad2) {
 
-        Digimon d1 = seleccionarDigimon(entrenador1, posicion1);
-        Digimon d2 = seleccionarDigimon(entrenador2, posicion2);
+        if (!puedeUsarDigimon(entrenador1, posicion1)
+                || !puedeUsarDigimon(entrenador2, posicion2)) {
 
-        if (d1 == null || d2 == null) {
             ultimaRondaValida = false;
             return;
         }
 
+        Digimon d1 = seleccionarDigimon(entrenador1, posicion1);
+        Digimon d2 = seleccionarDigimon(entrenador2, posicion2);
+
         ultimaRondaValida = true;
+
         habilidad1Activada = false;
         habilidad2Activada = false;
 
