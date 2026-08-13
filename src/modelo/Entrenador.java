@@ -1,11 +1,19 @@
 package modelo;
 
+/**
+ * Representa a un entrenador: su nombre, sus 4 Digimon, cuales ya uso,
+ * cuantas rondas ha ganado, y el bono pendiente que le dejo su
+ * digievolucion para la ronda siguiente (ataque y/o defensa extra).
+ */
 public class Entrenador {
 
     private String nombre;
     private Digimon[] digimones;
     private boolean[] utilizados;
     private int rondasGanadas;
+
+    private int bonoAtaquePendiente;
+    private int defensaExtraPendiente;
 
     public Entrenador(String nombre) {
 
@@ -15,6 +23,8 @@ public class Entrenador {
         utilizados = new boolean[4];
 
         rondasGanadas = 0;
+        bonoAtaquePendiente = 0;
+        defensaExtraPendiente = 0;
     }
 
     public void agregarDigimon(Digimon digimon, int posicion) {
@@ -49,11 +59,37 @@ public class Entrenador {
         }
     }
 
-
     public void ganarRonda() {
         rondasGanadas++;
     }
 
+    /**
+     * Suma un valor al bono de ataque pendiente (puede ser negativo,
+     * por ejemplo cuando el rival te aplica dano directo).
+     */
+    public void agregarBonoAtaque(int valor) {
+        bonoAtaquePendiente += valor;
+    }
+
+    /**
+     * Devuelve el bono de ataque acumulado y lo reinicia a 0,
+     * ya que solo aplica para el Digimon que juega esta ronda.
+     */
+    public int consumirBonoAtaque() {
+        int valor = bonoAtaquePendiente;
+        bonoAtaquePendiente = 0;
+        return valor;
+    }
+
+    public void agregarDefensaExtra(int valor) {
+        defensaExtraPendiente += valor;
+    }
+
+    public int consumirDefensaExtra() {
+        int valor = defensaExtraPendiente;
+        defensaExtraPendiente = 0;
+        return valor;
+    }
 
     public String getNombre() {
         return nombre;
